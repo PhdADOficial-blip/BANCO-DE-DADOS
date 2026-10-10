@@ -1,0 +1,230 @@
+
+------Sistema banco de dados-------------------------------------
+
+------Teorica - Historica---------------------------------------- 
+
+
+    1- Computador 1940 ex ENIAC
+        -Objetivo calculos, Processamento aritmédico 
+        -Não tinha conceito de armazenamento de dados, a longo prazo
+
+    2- Arquitetura de von Neumann  
+        -(CPU + memoria guardam dados e programas juntos)
+        -OS dados e programas compartilham a mesma memória
+        -O impacto foi que antes para mudar um programa, era preciso mudar cabos e chaves fisicas. Com von Neumann os computadores são genericos,o código que executa uma tarefa passou a ser tratado como um dado comum. 
+         
+    3- Disco Magnético / HD (IBM,1957) e Acesso Direto
+        - Antes usava cartão perfurado ou ficas magneticas,(como fitas cassete), A fita essigia acesso sequencial, se quero o dado 100 preciso passar pelos 99 
+        -Acesso Direto, aqui chegamos no Disco magnetico (introduzido pela IBM RAMAC) permitiu ir direto ao pronto onde o dado estava gravado (scelerou drasticamente a velodcidade de leitura e escrita)
+
+    4-Sistema de Arquivos e Primerio Problema 
+        -Com a Faciliade do HD Surgiu Os Sitemas de arquivos (pastas e arquivos texto/binários)
+        -O Problema da repetição: no Começo, cada programa tinha que ter seu proprio código interno para abrir,ler,e validar e fechar arquivos. se tem (RH,Estoque e Vendas) Os três tinha blocos idênticos e reduntantes apenas para manipular arquivos fisitocos. Se a Estrutura do arquivo mudasse, todos os progermas quebravam. Dai veio  o conceito de Dependência de Dados
+        - A solução SGBDS
+
+    5. Surgimento do SBD / SGBD (Década de 1960)
+        - A Solução: Isolar a responsabilidade. Criou-se uma camada de software intermediária chamada SGBD (Sistema de Gerenciamento de Banco de Dados).
+        -  Os programas pararam de manipular os arquivos do HD diretamente. Agora, o programa pedia o dado ao SGBD, e o SGBD se encarregava de buscar no disco. Isso eliminou a repetição de lógica e centralizou o controle de acesso e segurança.
+
+    6. Modelo Relacional (Edgar F. Codd, 1970)
+        - Antes do Codd os banco de dados eram 
+            Rede ou hierárquicos (estruturas complexas de ponteiros que pareciam árvores), vinculado fisicamente tendo um caminho para acessar. Se o programador errasse o caminho dos ponteiros, o dado sumia.
+        -Depois do Codd, publicou o histórico artigo "A Relational Model of Data for Large Shared Data Banks". Ele percebeu que a Teoria dos Conjuntos e a Lógica de Predicados (ramos da matemática) podiam ser aplicados ao armazenamento de dados.  
+        - Não precisamos sabe onde os dados estão apenas visualisamos uma Relação 
+        (que nós conhecemos popularmente como Tabela).      
+            Para buscar a  informação, surgiu a linguagem SQL (Structured Query Language), baseada na proposta de Codd. O programador não diz como o computador deve navegar na memória, ele apenas declara o que ele quer:
+    
+    7. Middleware e a Era Web (Fim do Séc. XX)
+            - Antes So programas ficavam no computador do cliente que ascessava o servidor isso era uma risco pois a atulização era manual computador por computador, e a senha mestre ficava no computador se um ussuario mal intecionado achase poderia mudar e manipular os dados 
+            - Nacimento da 3 camada (servidor de aplicação )(Java, PHP, .NET, Node)(cliente-middleware-servidor)
+            dessa forma o navegador poderia conversar com o banco de dados Middleware (ou servidor de aplicação/Back-End). A arquitetura evoluiu para 3
+            - Camada 1 (Cliente - Frontend)
+            - Camada 2 (Middleware - Backend)
+            - Camada 3 (Banco de Dados)
+                segurança maxima 
+                Escalabilidadce 
+    
+    8. Big Data e NoSQL (Século XXI)
+        - O novo limite: A internet explodiu em volume (redes sociais, sensores, logs de acesso). As tabelas rígidas do Modelo Relacional começaram a gargalar para processar petabytes de dados gerados a cada segundo.
+        - A solução NoSQL (Not Only SQL): Surgiram os bancos não relacionais. Eles abriram mão de algumas regras rígidas de consistência em troca de escalabilidade horizontal extrema (distribuir o banco em milhares de servidores comuns) e flexibilidade para guardar dados variados (documentos JSON, grafos, chave-valor).
+
+    9- Atualmente evolução de  Bancos de Dados Vetoriais e o Processamento em Tempo Real (streaming)
+        -• (arquiteturas orientadas a eventos, usando ferramentas como Apache Kafka).
+
+            O Próximo Passo: A Fusão dos Dois
+
+            A grande fronteira tecnológica atual é unir essas duas coisas. Imagine uma Inteligência Artificial de segurança cibernética que usa bancos vetoriais para entender comportamentos complexos de usuários e, ao mesmo tempo, processa o tráfego da rede em tempo real (streaming). Ela consegue prever e parar um ataque hacker inédito antes mesmo que ele aconteça, apenas identificando que o "padrão de comportamento" dos dados na rede mudou sutilmente.
+            Toda aquela linha do tempo que você mandou na primeira mensagem (desde a calculadora de 1940 até o NoSQL) serve para nos trazer exatamente aqui: saímos da era de "guardar o passado" para entrar na era de 
+            
+            "reagir e entender o presente".
+        
+        ------Conceitos chave-------
+
+            - Conceito-chave nº 1: Independência entre dados e programas
+            - Conceito-chave nº 2: SBD ≠ SGBD (conceito amplo - Motor software intermediario)
+
+        -------Modelos de banco de dados na história:-------
+            - Navegacional (rede)	        1960	Grafo/rede (CODASYL)	           IDS
+
+            - Navegacional (hierárquico)	1960	Árvore	    IMS                   (IBM)
+
+            - Relacional	                1970	Tabela (relação matemática)	 Oracle, MySQL, SQL Server, PostgreSQL, DB2
+
+            - Não relacional (NoSQL)	Atual	 Chave-valor, documentos, grafos, colunar, etc.	MongoDB, Redis, Neo4j, Cassandra
+
+------Características dos Sistemas de Banco de Dados (SBD)-------
+
+ -----TEORIA/EVOLUÇÃO — Arquitetura de Três Esquemas (ANSI/SPARC)
+
+        - Nível Externo    → visão de cada usuário/aplicação (o que ele "enxerga")
+
+        - Nível Conceitual → estrutura lógica completa do banco (visão do projetista)
+
+        - Nível Interno    → como os dados são fisicamente armazenados em disco
+
+    Dessa arquitetura nascem dois tipos de independência:
+
+        Independência Lógica -> Mudar o esquema conceitual (ex.: adicionar uma coluna) -> não afeta As visões externas dos usuários
+
+        Independência física - > Reorganizar os arquivos físicos em disco -> não afeta O esquema lógico e as visões externas
+
+        OBS:Técnica de Feynman aplicada 
+
+    3 características que diferenciam SBD de sistemas de arquivos
+
+        1- Natureza autocontida → o SBD guarda, além dos dados, a descrição completa da própria estrutura (isso é o metadado, guardado no catálogo do sistema).
+
+        2- Abstração de dados → esconde detalhes de armazenamento físico, permite múltiplas visões lógicas.
+
+        3- Suporte a compartilhamento e transações concorrentes → vários usuários acessam ao mesmo tempo.
+
+    
+    Modelos de dados — os 3 níveis de abstração:
+
+    Modelo	     O que representa	                                                                  Exemplo
+
+    Conceitual	 Visão do usuário final, mais próxima do mundo real	Modelo Entidade-Relacionamento   (Peter Chen, 1976) / UML
+
+    Lógico	     Estrutura abstrata de implementação	                                              Modelo Relacional (tabelas)
+
+    Físico    	  Como os dados ficam armazenados no disco	                                          Tipos de arquivo índices,   
+   .                                                                                                  ordenação
+
+   🟢 PRÁTICA: Este bloco é a ponte para o próximo tema da disciplina: "Modelagem conceitual" (Entidade-Relacionamento) e "Modelagem lógica/física" (normalização). O que você está lendo agora é a base teórica que vai justificar por que você vai desenhar diagramas ER depois.
+
+
+ ----Vantagens, Desvantagens e Propriedades ACID----------------
+    TEORIA — Funcionalidades do SB
+    
+    Funcionalidade	                    O que resolve
+    
+    Controle de redundância	            Evita dados duplicados e inconsistentes
+    Compartilhamento de dados	        Múltiplos usuários, com controle de concorrência
+    Controle de acesso	                Senhas, permissões, restrições por usuário/grupo
+    Múltiplas interfaces	            Linguagens de consulta, GUIs, APIs, linguagem natural
+    Representação de relacionamentos	Liga dados entre si conforme o mundo real
+    Restrições de integridade	        Tipo de dado, chaves únicas, integridade referencial
+    Backup e recuperação	            Restaura o banco após falhas
+
+    Propriedades ACID - Decore 
+
+    Letra	Propriedade	        Definição resumida
+
+    A	    Atomicidade	        A transação executa por completo ou não executa nada (tudo ou nada)
+    C	    Consistência	    A transação leva o banco de um estado válido para outro estado válido
+    I	    Isolamento	        Transações concorrentes não interferem umas nas outras
+    D	    Durabilidade	    Uma vez confirmada (commit), a transação sobrevive a falhas do sistema
+
+    Elaboração (Feynman): pense numa transferência bancária (retirar de A, depositar em B).
+
+        Atomicidade: se der erro depois de retirar de A, o sistema desfaz tudo — o dinheiro não "some".
+
+        Consistência: o saldo total do banco antes e depois bate.
+
+        Isolamento: se duas pessoas mexerem na mesma conta ao mesmo tempo, uma não vê o resultado incompleto da outra.
+
+        Durabilidade: depois que a tela mostra "transferência concluída", mesmo que o servidor caia no segundo seguinte, o dinheiro já está lá.
+        
+    Vantagens vs. Desvantagens
+
+        Vantagens	                                        Desvantagens
+
+        Padronização de dados na organização	            Overhead de desempenho (o SGBD é uma camada extra)
+        Menos tempo de desenvolvimento	                    Custo de licença, hardware e capacitação
+        Flexibilidade de manutenção	                        Complexidade de administração
+        Dados sempre atualizados para toda a empresa
+
+        Quando NÃO usar SBD: aplicações muito simples e estáticas, sistemas de tempo real crítico (ex.: piloto automático), sistemas embarcados, monousuário sem concorrência.
+
+-----Arquitetura do SGBD e Papéis dos Usuários
+
+    TEORIA — Papéis em um Sistema de Banco de Dados
+
+    Papel	                                Função
+
+    Administrador de dados	                Define políticas, regras de negócio e padrões de dados da organização (gerencial)
+    Administrador do Banco de Dados (DBA)	Cria e mantém os bancos no SGBD (técnico)
+    Administrador de aplicações	            Mantém os sistemas de aplicação e dá suporte aos usuários
+    Administrador de desenvolvimento	    Coordena as equipes que constroem os sistemas
+    Administrador de sistema	            Cuida do hardware/SO/infraestrutura
+    Usuários finais	                        Os beneficiários do sistema (quem usa no dia a dia)
+
+        Uma pessoa pode acumular vários papéis (empresas pequenas) ou cada papel pode ser um departamento inteiro (empresas grandes).
+
+    Usuários → [DBA | Usuários casuais | Programadores | Usuários paramétricos]
+              ↓            ↓               ↓                 ↓
+           Comandos DDL   Consulta ad hoc  Programas de     Transações
+         e DCL          (SELECT)         aplicação (DML)  compiladas
+                  ↓            ↓               ↓                 ↓
+                        → PROCESSADOR DE RUNTIME (o "coração" do SGBD) ←
+                              ↓                    ↓
+                        Catálogo do sistema      Banco de dados
+                        (metadados)              armazenado (dados)
+
+
+    As 3 linguagens que  usa em SQL 
+
+    Sigla	Nome completo	                   Para quê serve	                                    Comandos
+
+    DDL	    Data Definition Language	       Criar/alterar/remover estruturas (tabelas)	        CREATE, ALTER, DROP
+
+    DML	    Data Manipulation Language	       Manipular os dados dentro das tabelas	            SELECT, INSERT, UPDATE, DELETE
+
+    DCL	    Data Control Language	           Controlar permissões de acesso	                    GRANT, REVOGAR (REVOKE)
+
+
+        Isso é o gancho direto para o Tema 4 da sua disciplina ("Criar e manipular objetos no PostgreSQL"). Quando você chegar lá, vai reconhecer imediatamente que CREATE TABLE é DDL e INSERT INTO é DML.
+
+    
+    Estado/Instância vs. Esquema (diferença sutil, mas cobrada):
+
+        Esquema = a estrutura (tabelas, colunas) — muda raramente.
+
+        Estado/instância = o conteúdo armazenado num momento específico — muda a cada INSERT/UPDATE/DELETE.
+
+
+    PRÁTICA: Toda vez que você abrir um SGBD, vai estar interagindo com esse fluxo: você (usuário casual ou programador) manda um comando → ele passa por um compilador/otimizador → chega ao processador de runtime → acessa catálogo e dados.
+
+-------PostgreSQL na Prática------
+
+    TEORIA
+
+        - PostgreSQL é um SGBD relacional-objeto: 
+            Estrutura base é a tabela, mas com extensões de orientação a objetos (herança de tabelas, tipos customizados).
+
+        - Modelo de computação: 
+            cliente/servidor.
+
+                - Back end = processo postgres, gerencia os arquivos e conexões.
+                - Front end = aplicações clientes (psql, pgAdmin, ou qualquer app que se conecte).
+
+        - Possui todas as propriedades ACID.
+        - Licença open source (BSD) — pode usar, modificar e distribuir livremente.
+
+
+
+    PRÁTICA — o que você vai realmente instalar/usar em breve
+
+        - psql: interface de linha de comando.
+        - pgAdmin: interface gráfica.
+        - Recursos que você vai usar nos próximos temas: CREATE TABLE, chaves estrangeiras, índices, SELECT com filtros e junções.
