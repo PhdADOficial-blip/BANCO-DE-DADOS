@@ -14,8 +14,8 @@
         -O impacto foi que antes para mudar um programa, era preciso mudar cabos e chaves fisicas. Com von Neumann os computadores são genericos,o código que executa uma tarefa passou a ser tratado como um dado comum. 
          
     3- Disco Magnético / HD (IBM,1957) e Acesso Direto
-        - Antes usava cartão perfurado ou ficas magneticas,(como fitas cassete), A fita essigia acesso sequencial, se quero o dado 100 preciso passar pelos 99 
-        -Acesso Direto, aqui chegamos no Disco magnetico (introduzido pela IBM RAMAC) permitiu ir direto ao pronto onde o dado estava gravado (scelerou drasticamente a velodcidade de leitura e escrita)
+        - Antes usava cartão perfurado ou fitas magneticas,(como fitas cassete), A fita essigia acesso sequencial, se quero o dado 100 preciso passar pelos 99 
+        -Acesso Direto, aqui chegamos no Disco magnetico (introduzido pela IBM RAMAC) permitiu ir direto ao pronto onde o dado estava gravado (acelerou drasticamente a velocidade de leitura e escrita)
 
     4-Sistema de Arquivos e Primerio Problema 
         -Com a Faciliade do HD Surgiu Os Sitemas de arquivos (pastas e arquivos texto/binários)
