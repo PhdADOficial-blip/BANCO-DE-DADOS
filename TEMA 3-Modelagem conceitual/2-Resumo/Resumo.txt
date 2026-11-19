@@ -52,7 +52,7 @@
 
 
 
-
+        
 1.2 Projeto conceitual -Entidade Relacional- modelo abstrato
             modelo abstrato 
 
@@ -84,7 +84,8 @@
 
         Na terminologia da UML, o relacionamento entre classes é chamado de associação. Assim, uma associação é representada por uma linha que conecta as classes participantes. Além disso, atributos dos relacionamentos são colocados em uma caixa conectada à associação por uma linha tracejada
 
-1.2.1 -Entidades e relacionamentos
+
+1.2.1 -Entidades e relacionamentos -  
     Adentrando agora ao mundo da modelagem visual, exploraremos o diagrama entidade-relacionamento (DER)
 
         TRANSFORMAR 
@@ -94,20 +95,21 @@
 
         AS ENTIDADE PODEM SER AGRUPADAS EM ENTIDADES TIPOS 
 
-    ENTIDADES TIPOS CLASSES 
-    ENTIDADE PESSAOS TIPO ALUNO 
-    ENTIADE PESSOAS TIPO EMPREGADO 
+    1- ENTIDADES TIPOS CLASSES 
+    2- ENTIDADE PESSAOS TIPO ALUNO 
+    3- ENTIADE PESSOAS TIPO EMPREGADO 
 
         REPRESENTADO POR UM RENTANGULO E SEU NOME 
 
-    RELACIONAMENTO 
-    RELACIONAMENTO TIPO 
-    Autorrelacionamento
+    1-RELACIONAMENTO 
+    2-RELACIONAMENTO TIPO 
+    3-Autorrelacionamento
+    4-RELACIONAMENTO TERNARIO 
      REPRESENTA POR UN losango E SEU NOME 
 
         TEMOS QUE REPRESENTA AS CARDIALIDADES 
 
-    QUANTAS ENTIDADES UMA ENTIDADE RELACIONA 
+    CARDINALIDADE =  indica a quantidade de ocorrências de uma entidade que podem estar associadas a ocorrências de outra entidade em um relacionamento!
 
     1:1 UM SE RELACIONA NO MAXIMO PARA 1
     1:N  UM SE RELACIONA POR VARIOS MAS DO OUTRO LADO SO 1
@@ -122,10 +124,136 @@
     UM LOCAL CONHE UMA OU VARIAS PESSOAS 
     UMA PESSOA CONHECE NENHUM OU VARIOS LOCAIS 
 
-    *******************************************************************************************AUTO RELACIONAMETNO 10:28 VIDEO AULA 
+    AUTO RELACIONAMENTO 
+    (0,1) (0,1)
+      GERENTE QUE E SUPBORDINADO OU NÃO 
+      
+1.2.2 ATRIBUTO 
 
-      
-      
+    CARACTERISTICA DE UMA ENTIDADE = OBJETO MUNDO REAL = ENTIDADE TIPO 
+        ex: valor = sexo masculino casado 
+        Atributos = conjunto de valor nome - sexo/genero - estado civil 
+
+        Atributo do Relacionamento 
+            caso acontecido no relacionamento 
+        
+    Atributos simples ou composto 
+
+        Atributo simples =  matricula 
+                            E-mail
+
+        Atributo Composto=  Endereço -  Rua 
+                                     -   Cep 
+                                     -   casa 
+        
+    Atributo unico ou não unicio 
+
+        Atributo unico = CPF 
+            não faz sentido uma pessoa com dois CPF 
+            vão esta acompanhado com ID matriculo pois pode repetir CPF dos pais 
+            representado com bolinhas escura 
+        Atributo não unico 
+            Varios alunos com mesmo nome 
+            representada com bolinhas escuras 
+
+        Atributos Opcional ou Obrigatorio 
+
+            Opcional = 0,_ = (0,1) (0,n)
+
+            Obrigatorio = 1,_ = (1,n), (1,1) 
+
+
+        atributo monovalorado ou multivalorado 
+
+            monovalorado = _,1 =(0,1) (1,1)
+
+            multivalorado = _,n  (0,n) (1,n)
+
+            monovalorado e obrigatorio (1,1)
+
+1.2.3   HIERARQUIA - ESPECIALIZAÇÃO / GENERALIZAÇÃO
+
+    GENERALIZAÇÃO 
+        SUBDIVIDE EM ESPECIALIZAÇÃO 
+        ATRIBUTOS E RELACIONAMENTOS SÃO HERDADOS POR SUAS ESPECIALIZAÇÕES 
+
+            NASCE UM CONCEITO DE HERANÇA 
+
+    ESPECIALIZAÇÃO 
+        PROPRIOS ATRIBUTOS 
+        PROPRIOS RELACIONAMETNOS
+
+
+    EX: FUNCIONARIO (T,E) - PROFESSOR
+                          - ADMINISTRATIVO 
+                    TOTAL PORQUE SO TEM ESSES FUNCIONARIOS E ESCLUSIVA PORQUE CADA UM EXERCE SUA FUNÇÃO
+                
+                REPRESENTAÇÃO =TRIANGULO 
+
+    EX: FUNCIONARIO (P,S) - PROFESSOR
+                          - DIRETOR 
+                    PARCIAL PORQUE ESTA FALTANDO O ADMINISTRATIVOS E SUPER POSIÇÃO PORQUE AMBOS PODE EZERCER OS CARGOS 
+                
+                REPRESENTAÇÃO = TRINGULO + P COM S OU C 
+
+        TIPOS DE GENERAÇLIZAÇÃO ESPECIALIZAÇÃO 
+
+        TOTAL:  
+        PARCIAL: 
+        EXCLUSIVA:
+        SUPERPOSIÇÃO/COMPARTILHADA:
+        
+        PODE EXISTE 
+            TOTAL EXCLUSIVA =  TX
+            PARCIASL EXCLUSIVA = PX
+
+            TOTAL COMPARTILHADA = TC
+            PARCIAL COMPARTILHADA = PC
+        
+        A relação de especialização/generalização é utilizada para representar hierarquias de classes no mundo real. Esse conceito é frequentemente associado ao modelo de dados orientado a objetos, no qual classes podem ser organizadas em uma hierarquia com uma classe mais geral (superclasse) e classes mais específicas (subclasses) herdam características da superclasse. Essa abordagem ajuda a modelar a relação "é-um" entre as classes e permite uma representação mais fiel da estrutura da informação no contexto do domínio do problema. As demais opções (a., b., c., e.) não representam adequadamente a finalidade da relação de especialização/generalização.
+
+1.2.4  ENTIDADE ASSOCIATIVA / AGREGAÇÃO 
+
+    RESOLVER UM CASO ESPECIFICO 
+        UM FUNCIONARIO PODE SER ALOCADO A VARIOS PROJETOS - EM UM PROJETO PODE ESTAR ALOCADOS VARIOS FUNCIONARIOS 
+        UM FUNCIONARIO PODE USAR VARIAS MAQUINAS 
+
+            AGREGAÇÃO =
+
+            FUNCIONARIO(0,N)  -  ALOCAÇÃO  - (0,N) PROJETO 
+                                    |
+                                 ULTIZA (0,N)
+                                    |
+                                 MAQUINA  (0,N)
+
+                ALOCAÇÃO E UTILIZA SÃO RELACIONAMENTOS ESSA AGREGÇÃO SO PODE SER USADO PARA ENTIDADES AMBAS (0,n)
+
+            MEDICO   CONSULTA/ATENDE        CLIENTE         
+            (0,N)      (0,N)                  (0,N)
+ 
+            CRM        DATA                 CODIGO       
+            NOME        |                    NOME          
+                        |
+
+                     RECEITA 
+                    
+                     DOSAGEM 
+                        |
+                     MEDICAMENTO 
+                    (1,N)
+                     NOME 
+                     PRINCIPIO ATIVO 
+
+        Uma entidade associativa permite que uma entidade estabeleça relação com o relacionamento entre as outras duas entidades. Quando duas entidades têm um relacionamento direto muitos-para-muitos, é comum introduzir uma entidade associativa para armazenar as informações associadas a esse relacionamento. Ela contém chaves estrangeiras das entidades relacionadas, servindo como uma ponte para resolver esse tipo de relacionamento complexo. Isso ajuda a evitar a duplicação de dados e a organizar as informações de maneira mais eficiente.
+
+1.2.5 PRATICA ESTUDO DE CASO 
+
+    1-Processamento de entidades 
+    4 atividades 
+    2-Quando manter histórico
+
+-----------------------------------------------------------------***manter historico inicio do video
+
 
 
 
