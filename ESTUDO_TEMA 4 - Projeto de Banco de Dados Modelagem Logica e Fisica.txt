@@ -1,0 +1,237 @@
+Tema 4 - Projeto de Banco de Dados: Modelagem Lógica e Física
+
+--------------------------------------------------------------------------------------------------------
+INTRODUÇÃO 
+--------------------------------------------------------------------------------------------------------
+0-OBJETIVO
+    1 - Identificar os elementos do modelo relacional.
+
+    3- Diferenciar formas normais.
+
+    4- Aplicar o mapeamento conceitual-lógico.
+
+    5- Identificar aspectos físicos para implementação do modelo no SGBD.
+
+0.1-INTRODUÇÃO MODELO RELACIONA
+
+    Vamos estudar sobre os conceitos e componetnes do modelo relacional, representado em formato de tabela, ele esta presente em diverso sistemas gerenciadores de banco de dados (SGBD), tais como 
+        MySQL
+        Oraclre
+        PostgreSQL
+        SQL Server 
+
+    Vamos estudar o processo de NORMALIZAÇÃO ->Qualidade 
+    As regras que deveram ser aplicadas para obter um modelo LOGICO aparti de um modelo CONCEITUAL 
+
+    por fim aspectos FISICOS 
+
+0.2-Historia
+    proposto edgar Codd em 1970 
+
+--------------------------------------------------------------------------------------------------------
+ELEMENTOS DO MODELO RELACIONAL
+--------------------------------------------------------------------------------------------------------
+1.0 MODELAGEM LOGICA E FISICA - MODELO RELACIONAL E COMPONENTES BASICOS DE UMA TABELA 
+
+    Baseado no uso de tabelas 
+        -CARACTERISTICAS PRINCIPAIS 
+            SEM LINHASR REPETIDAS 
+            RELACIONAMENTO LOGICO NÃO FISICO 
+           
+    nomes: 
+        TERMO FORMAL  -    TERMO PRATICO 
+            RELAÇÃO   =    TABELA 
+            ATRIBUTO  =    COLULA 
+            TUPLA     =    LINHA 
+            INSTÂNCIA =    CONJUNTO DE LINHAS 
+            DOMINIO   =    TIPO DE DADO 
+            CAMPO     =    CELULA
+            VALOR     =    CONTEUDO 
+            NULO(NULL)=    CAMPO VAZIO 
+        
+            CHAVE PIRMARIA (PK)    = ATRIBUTO IDENTIFICADOR 1 OU CONJUNTO DE COLUNAS 
+                    NÃO SE REPETE E NÃO PODE SER NULO(NULL)
+            CHAVE ESTRANGEIRA (FK) = COLUNA DE UMA TABELA QUE APONTA -> CHAVE PRIMARIA DE OUTRA TABELA 
+                    E A QUE CRIA RELACIONAMENTO LÓGICO ENTRE DUAS TABELAS 
+
+    EXEMPLO FISICO, TEORIA postgreSQL : 
+
+    TEORIA POSTEGRESQL 
+    
+    CREATE TABLE EXEMPLO 
+    ( NR INTEGER,
+     LETRA CHAR )
+                    /* CRIEI A TABELA EXEMPLO */
+                    /*  DOIS ATRIBUTO INTEIRO E UMA LETRA */
+
+    SELECT * FROM EXEMPLO   
+                    /* SELECIONAR A TABEMA = MOSTRA */
+    
+    INSERT INTO EXEMPLO VALUES (1,'A')
+    INSERT INTO EXEMPLO VALUES (2,'B')
+
+                    /* SE DER SELECT - VOI MOSTRAR AS DUAS LINHAS E SEUS ATRIBUTOS */
+
+1.1 MODELAGEM LOGICA E FISICA - CHAVE PRIMARIA 
+
+    TODA TABELA DO MODELO RELACIONAL TEM QUE TER UMA CHAVE PRIMARIA 
+
+    CHAVE PRIMARIA - GERADA ATRAVES DE UM ATRIBUTO IDENTIFICADOR DE UMA TABELA (RELAÇÃO)
+
+    DEFINIÇÃO: ATRIBUTO DA RELAÇÃO, CUJA OS VALORES MANTEM UMA RELAÇÃO BIUNIVOCA(1,1) COM A TUPLA
+
+        CARACTERISTICAS: 
+            INTEGRIDADE DA ENTIDADE 
+                O VALOR NÃO PODE SER VAZIO (NULL), POIS ELA REPRESENTA UMA ENTIDADE 
+
+            INTEGRIDADE DE CHAVE PRIMARIA 
+                VALOR ÚNICO = BIUNIVOCA
+                UNICA LINHA 
+        RESUMO CARACTERISTICA:
+         Unicidade: 
+         Não Nulidade (NOT NULL): 
+         Imutabilidade (Estabilidade): 
+         Minimalidade:
+
+        EXISTE DOIS TIPOS DE - CHAVE  PRIMARIA -
+
+            SIMPLES   = ID        
+
+            COMPOSTA  = RESPONSAVEL + ID  (DOIS ATRIBUTOS PARA FORMA UMA CHAVE PRIMARIA)
+
+            CANDIDATA = PREREQUISITO ( VALOR UNICO POR TUPLAS - SIMPLES OU COMPOSTA )
+
+        ORIGEM DOS DADOS 
+            NATURAL = JA EXISTE NO MUNDO REAL EX, CPF, CNPJ, PLAVA_VEICULO
+            
+            ARTIFICIAL = GERADA AUTOMATICAMENTE OU SEGUENCIAL 
+
+  EXEMPO PRATICO: 
+    CREATE TABLE REGIAO
+    ( NR INTEGER PRIMARY KEY,
+    NOME VARCHAR (20))
+
+    INSERT INTO REGIAO VALUES (1,'R1')
+
+    INSERT INTO REGIAO VALUES (NULL,'R2')  ERROR:  null value in column "nr" of relation "regiao" violates not-null constraint
+    INSERT INTO REGIAO VALUES (4,'R3')
+    INSERT INTO REGIAO VALUES (4,'R3')     ERROR: duplicate key value violates unique constraint "regiao_pkey"
+
+1.2 MODELAGEM LOGICA E FISICA - CHAVE ESTRANGEIRA 
+
+    ESSA TABELA DE UM CHAVE PRIMARIA [ALUNO] [ID]
+
+    QUANDO ELA VAI PARA OUTRA TABELA [TELEFONE] [ID_ALUNO] AQUI ELA E ESTRANGEIRA 
+        LIGAÇÃO LOGICA ONDE MATERIALIZAMOS AS RELAÇÕES NA MODELAGEM (DER)-> NO BANCO DE DADOS RELACIONAL
+
+    CARACTERISTICA 
+        INTEGRIDADE RELACIONAL 
+            NÃO PERMITER UMA LIGAÇÃO ENTRE DUAS TABELAS COM UMA VALOR QUE NÃO ESTEJA NA CHAVE PRIMARIA (INTEGRIDADE REFERENCIAL)
+
+            [ALUNO] {ID}   | [TELEFONE] {ID_ALUNO}
+                     1     |               1
+                     2     |               2
+                     3     |               2
+                           |               3
+                           |               4 NÃO PERMITE POIS O NUMERO 4 NÃO EXISTE NA PRIMARY KEY
+
+ EXEMPLO PRATICA:        
+    CREATE TABLE DEPARTAMENTO
+    ( NR INTEGER PRIMARY KEY,
+    NOME VARCHAR (20),
+    ID_REG INTEGER REFERENCES REGIAO (NR))
+    
+    INSERT INTO DEPARTAMENTO VALUES (1,'D1',1)
+
+    INSERT INTO DEPARTAMENTO VALUES (2,'D2',2)
+        ERROR:  insert or update on table "departamento" violates foreign key constraint "departamento_id_reg_fkey"
+        DETAIL:  Key (id_reg)=(2) is not present in table "regiao". 
+        O UTIMO NUMERO NÃO EXISTE NA TABELA REGIAO, ENTÃO VIOLA A INTEGRIDADE RELACIONAL 
+
+    INSERT INTO DEPARTAMENTO VALUES (3,'D3',3)
+
+1.3 MODELAGEM LOGICA E FISICA - ESQUEMA DIAGRAMÁTICO DE BANCO DE DADOS RELACIONAL
+
+
+    REPRESENTAÇÃO DIAGRAMATICO DE UM BANCO DE DADOS 
+
+    1- MODELO TEXTUAL 
+      EXEMPLO:
+
+        CLIENTE (ID_Cliente, Nome, CPF, Telefone)
+        PEDIDO (ID_Pedido, Data_Pedido, Valor_Total, ID_Cliente)
+
+        • ID_Cliente referencia CLIENTE (ID_Cliente)
+
+        PRODUTO (ID_Produto, Descricao, Preco_Unitario)
+        ITEM_PEDIDO (ID_Pedido, ID_Produto, Quantidade, Preco_Venda)
+
+        • ID_Pedido referencia PEDIDO (ID_Pedido)
+        • ID_Produto referencia PRODUTO (ID_Produto)
+
+            Como ler essa notação (Regras padrão):
+
+            1. NOME DA TABELA: Escrito em letras MAIÚSCULAS fora dos parênteses (ex: CLIENTE).
+            2. Atributos (Colunas): Escritos dentro dos parênteses, separados por vírgula.
+            3. Chave Primária (PK): Fica sublinhada (ou marcada com PK ao lado, quando a plataforma não permite sublinhar).
+                • Nota: Na tabela ITEM_PEDIDO, ID_Pedido e ID_Produto estão ambos sublinhados porque formam uma Chave Primária Composta.
+            4. Chave Estrangeira (FK): Fica em itálico (ou tracejada, ou marcada com FK ao lado). Logo abaixo da tabela, indica-se qual tabela e coluna ela referencia.
+
+        OU: 
+
+        CLIENTE (ID_Cliente [PK], Nome, CPF, Telefone)
+
+        PEDIDO (ID_Pedido [PK], Data_Pedido, Valor_Total, ID_Cliente [FK])
+        ID_Cliente referencia CLIENTE(ID_Cliente)
+
+        PRODUTO (ID_Produto [PK], Descricao, Preco_Unitario)
+
+        ITEM_PEDIDO (ID_Pedido [PK, FK], ID_Produto [PK, FK], Quantidade, Preco_Venda)
+        ID_Pedido referencia PEDIDO(ID_Pedido)
+        ID_Produto referencia PRODUTO(ID_Produto)
+
+    2- GRAFICO 
+       USAMOS A FERRAMENTA brMODELO
+       bRMODELO = DIAGRAMAS/TABELAS NO MODELO LOGICO 
+
+--------------------------------------------------------------------------------------------------------
+FORMAS NORMAIS
+--------------------------------------------------------------------------------------------------------
+2.0 MODELAGEM LOGICA E FISICA - NORMALIZAÇÃO
+    
+    OBJETIVO:
+        EVITAR REDUNDANCIA 
+        PROCESSO PARA MELHORA A ESTRUTURA DA TABELA - EVITAR ANOMALIA
+    PRINCIPIOS NORTEADOR
+        1- ARMAZENA UMA UNICA VEZ 
+        2- ECONOMIA DE ESPAÇO 
+      IDEIA = VAMOS ARMAZENAR VARIOS DADOS UMA UNICA VEZ E ESPALHAR EM TABELAS SEPARADAS 
+     
+  REPRESENTAÇÃO FORMA NORMAIS  
+    
+    RELAÇÃO NÃO-NORMALIZADO         | ESTUDAR 
+            1FN                     ^ ESTUDAR 1
+               2FN                  | ESTUDAR 2
+                  3FN               ^ ESTUDAR E 3
+                     BCNF           | EFEITOS PRATICOS NÃO MUITO IMPORTANTE 
+                         4FN        ^ EFEITOS PRATICOS NÃO MUITO IMPORTANTE 
+                            5FN     | EFEITOS PRATICOS NÃO MUITO IMPORTANTE 
+    OBS: SE ESTA NA QUINTA ESTA EM TODAS FORMAS.
+
+    EXEMPLO PRATICO:
+
+         TABELA PEDIDO (DADOS TUDO MISTURADO)          
+            CASOS ANOMALIA 
+                1- ANOMALIA DE INCLUSÃO 
+                        NÃO POSSO FAZER UM CADASTRO DE UM CLIENTE SE ELE NÃO COMPRA 
+                2- ANOMALIA DE EXCLUSÃO 
+                    SE APAGA O CLIENTE APAGA TODO O HISTORICO DE COMPRA 
+                3- ANOMALIA DE ALTERAÇÃO 
+                    SE UM PRODUTO MUDA DE PREÇO, TEMOS QUE PASSAR POR TODOS OS DADOS 
+
+    EXPLICAÇÃO DO PRPCESSO:
+   1- UMA FORMA NORMAL É UM CONJUTO DE REGRAS QUE UMA TABELA DEBVE SEGUIR 
+   2- O PROCESSO DE NORMALIZAÇÃO VAI EVITAR ANOMALIAS 
+   3- E CONVERTE PROGRESSIVAMENTE UMA TABELA EM TABELAS DE GRAUU E CARDINALIDADE MENORES ATE QUE POUCO OU NENHUMA REDUNCÃNCIA DE DADOS EXISTA
+
+ 

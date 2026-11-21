@@ -1,16 +1,37 @@
--------Nessa etapa focarei na modelagem Conceitual-------
-        -Objetivo 
-        1-Identificar as etapas de um projeto de banco de dados.
-        Etapas:
-        2-Reconhecer os elementos do diagrama de entidade e relacionamento.
-        Elementos 
-        Entidade 
-        Relacionamento 
-        3-Compreender a modelagem de entidades e relacionamentos.
-        Modelagem de entidade 
-        Relacionamento 
-        4-Compreender a modelagem de atributos.
-        Modelagem de atributos 
+0-Objetivo 
+    1-Identificar as etapas de um projeto de banco de dados.
+
+        Etapas: 1-levantamento de requisito - 2- modelo conceitual - 3- modelo logico - 4- modelo fisico 
+
+    2-Reconhecer os elementos do diagrama de entidade e relacionamento.
+
+    Elementos: 
+        1-Entidade = rentagulo 
+            Entidade Fraca = rentangulo duplo (depende de outra entidade para existir )
+
+        2-Atributo = Elipse ou Bolinhas 
+            Atributo chave/identificador = bolinha preta
+            Atributo composto = partes menores 
+            Atributo Multivalorado = (1,n) obrigatorio multivalorado 
+            Atributo derivado = quando em um relacionamento gera esse dado sem precisar adiconar
+
+        3-Relacionamento = losango
+
+        4-cardinalidade = nas linhas de ligação (ex: (1,1), (0,N), 1:N)
+
+        5-Generalização/Especialização = Triângulo Indica herança, parcial /parcial compartilhada/especializada
+
+        6-Entidade Associativa = Um losango dentro de um retângulo.
+
+
+    3-Compreender a modelagem de entidades e relacionamentos.
+
+        Modelagem de entidade: um objeto unico com seus atributos que o representa 
+        Modelagem de Relacionamento: reconhcer relacionamentos entre entidades e sua caracteristicas 
+
+    4-Compreender a modelagem de atributos.
+
+        Modelagem de atributos:  reconhecer seus valores unicos e seu padroes de comportamento que o levara a continuar sendo um atributo ou vira uma entidade posteriomente 
 
 ----------------------detalhamento---------------------------
         1.1.Levantamento de requisitos (OK)
@@ -31,8 +52,12 @@
                     Agregação 
                     Estudo de caso .1 Levantamento de Requisitos 
 -------------------------------------------------------------
----------------PROJETO DE BANOD DE DADOS---------------------
-1.1 Levantamento de requisição de informações 
+-----------Tema 3 - Projeto de Banco de Dados: Modelagem Conceitual-------------------------------------
+
+--------------------------------------------------------------------------------------------------------
+1. (DER) DIAGRAM ENTIDADE-RELACIONAMENTO
+--------------------------------------------------------------------------------------------------------
+1.1   EXPLICAÇÃO DIAGRAMA (DER) Levantamento de requisição de informações 
     
         R: estabelecer as nessecidades do usuario 
         faser uma entrevista ao usuario para enteder sobre o funcinamento do negócio e documentar os requisitos de dados de maneira completa e detalhada.
@@ -50,10 +75,7 @@
 
         -----------------------------------------------------
 
-
-
-        
-1.2 Projeto conceitual -Entidade Relacional- modelo abstrato
+1.2   EXPLICAÇÃO DIAGRAMA (DER) Projeto conceitual (DER) 
             modelo abstrato 
 
     O projeto conceitual usa um diagrama gráfico, conhecido por Diagrama de Entidade e Relacionamento (DER), que possui três elementos essenciais:
@@ -84,8 +106,7 @@
 
         Na terminologia da UML, o relacionamento entre classes é chamado de associação. Assim, uma associação é representada por uma linha que conecta as classes participantes. Além disso, atributos dos relacionamentos são colocados em uma caixa conectada à associação por uma linha tracejada
 
-
-1.2.1 -Entidades e relacionamentos -  
+1.2.1 EXPLICAÇÃO DIAGRAMA (DER) DIAGRAMA ENTIDADE-RELACIONAMENTO
     Adentrando agora ao mundo da modelagem visual, exploraremos o diagrama entidade-relacionamento (DER)
 
         TRANSFORMAR 
@@ -128,7 +149,7 @@
     (0,1) (0,1)
       GERENTE QUE E SUPBORDINADO OU NÃO 
       
-1.2.2 ATRIBUTO 
+1.2.2 EXPLICAÇÃO DIAGRAMA (DER) ATRIBUTO 
 
     CARACTERISTICA DE UMA ENTIDADE = OBJETO MUNDO REAL = ENTIDADE TIPO 
         ex: valor = sexo masculino casado 
@@ -171,7 +192,7 @@
 
             monovalorado e obrigatorio (1,1)
 
-1.2.3   HIERARQUIA - ESPECIALIZAÇÃO / GENERALIZAÇÃO
+1.2.3 EXPLICAÇÃO DIAGRAMA (DER) HIERARQUIA - ESPECIALIZAÇÃO / GENERALIZAÇÃO
 
     GENERALIZAÇÃO 
         SUBDIVIDE EM ESPECIALIZAÇÃO 
@@ -212,7 +233,7 @@
         
         A relação de especialização/generalização é utilizada para representar hierarquias de classes no mundo real. Esse conceito é frequentemente associado ao modelo de dados orientado a objetos, no qual classes podem ser organizadas em uma hierarquia com uma classe mais geral (superclasse) e classes mais específicas (subclasses) herdam características da superclasse. Essa abordagem ajuda a modelar a relação "é-um" entre as classes e permite uma representação mais fiel da estrutura da informação no contexto do domínio do problema. As demais opções (a., b., c., e.) não representam adequadamente a finalidade da relação de especialização/generalização.
 
-1.2.4  ENTIDADE ASSOCIATIVA / AGREGAÇÃO 
+1.2.4 EXPLICAÇÃO DIAGRAMA (DER) ENTIDADE ASSOCIATIVA / AGREGAÇÃO 
 
     RESOLVER UM CASO ESPECIFICO 
         UM FUNCIONARIO PODE SER ALOCADO A VARIOS PROJETOS - EM UM PROJETO PODE ESTAR ALOCADOS VARIOS FUNCIONARIOS 
@@ -246,17 +267,168 @@
 
         Uma entidade associativa permite que uma entidade estabeleça relação com o relacionamento entre as outras duas entidades. Quando duas entidades têm um relacionamento direto muitos-para-muitos, é comum introduzir uma entidade associativa para armazenar as informações associadas a esse relacionamento. Ela contém chaves estrangeiras das entidades relacionadas, servindo como uma ponte para resolver esse tipo de relacionamento complexo. Isso ajuda a evitar a duplicação de dados e a organizar as informações de maneira mais eficiente.
 
-1.2.5 PRATICA ESTUDO DE CASO 
+---------------------------------------------------------------------------------------------------------
+2.MODELO ENTIDADE RELACIONAMENTO
+---------------------------------------------------------------------------------------------------------
+2.1  EXPLICAÇÃO (DER) MODELO Processo de modelagem de entidades e relacionamentos -PRATICA- 
+ ---------------------------------------------------------------------------------------------------
+    1 - COMENTARIOS 
+    CASO 1 - 3 ENTIDADES () PROJETO -ORIENTAÇÃO  DOCENTE ()
+                                      ALUNO 
+        R: Problema de caso a data inicio e data fim da orientação que não tem como colocar no diagrama uma regra que foi estabelecida na reuisição (Cria uma caixa de observação para avisar que no relacionamento orientação quando for implementar adicione a regra a data inicio não pode ser maior que a data fim)
 
-    1-Processamento de entidades 
-    4 atividades 
-    2-Quando manter histórico
+    2 - DOIS DIAGRAMAS QUE GERAM O MEMSO BANCO 
+    CASO 2 - (0,N)CURSO   -      POSSUI      -  (0,N) DICIPLINA 
+                               RELACINAMENTO 
+                                  IGUAL 
+                ENTIDADE       ENTIDADE          ENTIDADE 
+                    IGUAL 
 
------------------------------------------------------------------***manter historico inicio do video
+        R: Os dois modelos vai da o mesmo resultado/banco equivalentes 
+    
+    3- IES POSSUI CODIGO E CNPJ 
+    CASO 2 - IES - ATRIBUTO =CODIGO 
+                 - ATRIBUTO =CNPJ 
+
+    ISSO SE CHAMA ENTIDADE ISOLADA 
+
+2.2 EXPLICAÇÃO (DER) MODELO - HISTORICO - COM ESTAVAMOS NA EPOCA E ESTAMOS AGORA 
+
+ -------------------------------------------------------------------------------------------------------
+    
+    -vamos armazenar a evolução dos dados 
+    caso - 1 derpatamento -(0,1) pertence (0,n)-  docente   
+
+    aqui podemos ter nenhum ou um docente em departamento 
+    e um um departamento pode ter nunhum ou varios docentes 
+
+    na evolução dos dados o relacionamento pertence tem 
+    dado inicio
+    data fim = sendo data fim um atributo Opicional 
+     agora temos o historico da alocação do professor 
+
+2.3 EXPLICAÇÃO (DER) MODELO - Mais sobre modelagem de entidades e relacionamentos
+
+ Existe dados derivados :   São atributos que surge com o proprio processo de criação do DER entra as relações, sem a nessecidade de adicionar pois são resultado da propria construção 
+
+ mais uma vez atributos tem os multivalorados ou opcional 
+
+ BOAS PRATICAS: 
+    Modelo inicial
+        Identificar entidades, relacionamentos, especializações e cardinalidade máxima de relacionamentos, bem como mapear atributos e identificadores de entidades e relacionamentos.
+
+    Modelo detalhado
+        Definir as cardinalidades dos relacionamentos, além de identificar outras restrições de integridade.
+
+    Validação
+        Revisar e validar o modelo junto ao usuário.
+
+2.4  EXPLICAÇÃO (DER) MODELO - Modelagem entidade relacionamento na prática
+
+ AO MODELAR UM MINIMUNDO PODEMOS TER ATRIBUTOS DERIVADOS QUE SÃO ATRIBUTOS GERADOS ENTRE UMA RELAÇÃO, NÃO TENDO NESSECIDADE DE ADICIONAR POIS E PRODUTO DO RELACINAMENTO 
+
+ RELACIONAMENTOS COM ATRIBUTOS ESPECIFICOS ACABA VIRANDO ENTIDADE 
+
+--------------------------------------------------------------------------------------------------------
+3.MODELAGEM DE ATRIBUTOS 
+---------------------------------------------------------------------------------------------------------
+3.1 EXPLICAÇÃO (DER) Atributo X Entidade AVANÇADO
+
+    EM UMA MODELAGEM UMA ENTIDADE PODE SE PASSAR POR ATRIBUTO OLHAMOS PARA A CARDINALIDADE, ELE MOSTRA A IMPORTANCIA E SEU COMPORTAMENTO UM ATRIBUTO OBRIGATORIO (1,N) QUE ESTA LIGADO A UMA ENTIDADE QUE SERA SE REPEDIDO VARIAS VEZES NÃO FAZ SENTIDO SER UM ATRIBUTO - PODENDO SE TORNA UMA ENTIDADE, ASSIM CONSEGUINDO ADICIONAR MAIS ATRIBUTOS CAPAZES DE NOS DA MAIS DADOS
+
+    NO CASO AO CONTRARIO 
+     UTILIZAMOS UM ATRIBUTO NO LUGAR DA ENTIDADE QUANDO DESEJAMOS MANTER A SIMPLICIDADE DO MODELO E O ATRIBUTO NÃO REPRESENTA UMA ENTIDADE DISTINTA
+      
+3.2 EXPLICAÇÃO (DER) ATRIBUTO OPCIONAL AVANÇADO
+
+    - VAMOS VER UM CASO ONDE UM ATRIBUTO OPCIONAL(NULL- NÃO OPBRIGATORIO) VAI SE TORNA UMA ENTIDADE 
+
+    NEM TODOS OS FUNCIOARIOS SÃO DENTISTA OU ADVOGADOS ( OAB - ABO ) ENTÃO EM UMA RELAÇÃO TERNARIO ESSE ATRIBUTO DE FUNCIONARIO OBCIONAIS VÃO SE TORNAR ATRIBUTOS DE ENTIDADES - ADVOGADO E DENTISTAS. 
+    PORQUE? PARA NÃO ENCHER A PLANILHA DE DADOS VAM VALORES NULL
+    VAMOPS CRIAR DUAS ENTIDADES ESPECIALIZADAS 
+
+3.3 EXPLICAÇÃO (DER) ATRIBUTO OPCIONAL MULTIVALORADO AVANÇADO
+
+    PORQUE TEMOS QUE TORNAR ATRIBUTOS MULTIVALORADO EM ENTIDADES? 
+        COMO PÓDEMOS TRANSFORMAR E PORQUE FAZER ISSO 
+
+    EM UMA RELAÃO TERNARIA FUNCIONARIOS PODEN TER DEPENDETES NO PLURAL ( OPCIONAL MULTIVALORADO (0,N)) O DEPENDENTE NÃO É DE UM FUNCIONARIO ESPECIALIZADO MAIS DOS FUNCIONARIOS 
+
+    SOLUÇÃO: BOA OPÇAO CRIAR UMA ENTIDADE POIS ATRIBUTOS MULTIVALORADOS SE TORNAM UMA PLANILHA
+
+    ENTIDADE:DEPENDETE  -----RELACIONA ---- FUNCIONARIO
+
+    TBM SERVE PARA TELEFONE 
+
+3.4 EXPLICAÇÃO (DER) ATRIBUTO REDUNDANTES E COMPOSTOS  AVANÇADO
+
+  -Atributo X Redundância
+
+    PRECISO DESCOBRIR A QUANTIDADE DE DEPENDETES DO FUNCIONARIO 
+
+    FUNCIONARIO - QTD_DEPENDETES - CODIGO
+        |
+     <POSSE>
+        |
+    DEPENDETES - CODIGOFUNCIONARIOS  -(CODIGO FUNCIONARIO ADICIIONADO NO DEPENDENTE MO.LOGICA)
+
+    ESSE ATRIBUTOS SÃO REDUNDANTES POIS ME PERMITE ACHAR AS MESMAS INFORMAÇÕES 
+
+    -REGRA = A MODELAGEM LOGICA SEMPRE VOU LEVAR O CODIGO FUNCIONARIO PARA O DEPENDENTE 
+
+    OBSERVE A LOGICA SE TEM VANTAGEM DE MANTER OS DADOS JA CALCULADOS, ENTÃO MANTEM TALVEZ POR TER MILHARES DE DADOS A SEREM CALCULADOS PARA ACHAR ESSE DADOS 
+
+  -Atributo composto
+
+  EM MODELO ONDE TEM ENTIDADE ALUNO - O ENDEREÇO É COMPOSTO.
+    SEGUNDO O PROFESSOR A ESTRUTURA PADRÃO DEIXA O MODELO SUJO - DESORGANIZAZDO 
+    NESSE CASO COMPENSA CRIAR UMA ENTIDADE ENDEREÇO ONDE FICA OS ATRIBUTOS COMPOSTO DO ENDEREÇO 
+
+3.5 EXPLICAÇÃO (DER) MODELAGEM DE ATRIBUTOS NA PRÁTICA AVANÇADO
+ Roteiro de prática
+
+ Para realizarmos a modelagem conceitual a partir do mundo real, devemos seguir os seguintes passos:
+
+    NO ESTUDO DE CASO DO PROFESSOR SERA FOCADO ASPECTO REFERENTE4S AOS ATRIBUTOS E QUANDO TRASNFORMALOS EM ENTIDADE
+
+        ENTIDADE FILME COM ATRIBUTOS CATEGORIA, MELHOR REPRESENTADO EM UMA ENTIDADE POIS ASSIM ATRIBUIMOS NOME + DESCRIÇÃO ENRIQUECENDO O MODELO 
+
+        PODE TER ATRIBUTO ATORES (MULTIVALORADO OPCIONAL) 
+        COM NOME REL E IDADE DE CADA ATOR (ATRIBUTO COMPOSTO E MULTIVALORADO ) ATRIBUTO QUE TEM ATRIBUTO E MULTIVALORADO SÃO DOIS MOTIVOS PARA CRIAR UMA ENTIDADE 
+
+        ENTÃO ESSE ATRIBUTO COMPOSTO MULTIVALORADO VAI SE TORNA UMA ENTIDADE ATOR COM SEUS ATRIBUTOS
+
+        INVES DE TRABALHAR COM IDADE VAMOS TRABALHAR COM DATA DE NASCIMENTO, POIS ASSIM PODEMOS DERIVAR SUA IDADE REAL 
+
+        E ATORES NEM SEMPRE E CONHECIDO PELO SEU NOME ENTÃO E NESSESARIO ADICIOANR ATRIBUTO DE NOME ARTISTICO 
+
+        NO RELACIONAMENTO ADICIONAMOS ATRIBUTO DE IDADE PARA SABERMONOS A IDADE QUE FOI ATUADO NAQUELE FILME 
+
+        ADICIONAMOS O CODIGO PARA ATOR 
+
+ Para realizarmos a modelagem conceitual a partir do mundo real, devemos seguir os seguintes passos:
+
+    1.Identificar as entidades existentes.
+    2.Definir as entidades tipo e representá-las no DER.
+    3.Identificar as associações entre as entidades, ou seja, os seus relacionamentos.
+    4.Definir os relacionamentos tipo e representá-los no DER.
+    5.Estabelecer as cardinalidades dos relacionamentos.
+    6.Identificar os atributos e suas características.
+    7.Modelar os atributos e as características de cada um dos atributos do cenário, determinando se esse atributo é:
+        7.1. Único ou não único.
+        7.2. Opcional ou obrigatório.
+        7.3. Simples ou composto.
+        7.4. Monovalorados ou multivalorado.
+
+    
+
+    Confira o DER de solução!
 
 
 
 
+
+-------------------Resumo da introdução------------------------------------------
 1.3 Projeto Logico -Relacional- modelos implementável
         Esquema lógico de dados (modelos implementável)
 
@@ -275,11 +447,6 @@
 
     REGRAS:
     REPRESENTAÇÃO - DEPOIS DO CONCEITO VEM A LOGICA ONDE REPRESETAMOS EM FORMA DE TABELAS USAMOS A FORMA MAIS USADO NO MERCADO modelo relacional /TABELA,NÃO E TUMA TABELA PADRÃO E PARECIDA COM O SITEMA UML
-
-
-
-
-
 
 -Resumo-Video-aula 
     -Minimundo (levantamento de requisitos )
@@ -317,10 +484,6 @@
         ATRAVES DO MAPEAMENTO CONSEGUIMOS CRIAR OS SCRIPT - CONSJUNTO DE COMANDOS EM SQL QUE CRIAMOS AS TABELAS 
         
         Ao longo deste conteúdo, estudamos as fases de um projeto de banco de dados. Percebemos que esta é uma atividade que envolve as seguintes tarefas: levantar requisitos de dados; construir um modelo de entidade e relacionamento; construir um modelo lógico; implementar o modelo físico.
-
- 
-
-
 
 1.4 Projeto fisico -Linguagem SQL- Esquema Processável
         esquema Físico de dados (Esquema Processável)
